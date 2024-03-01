@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    
+</head>
+<body>
+  
+    <div class="container mt-4">
+      <header class="mb-auto">
+        <div>
+          <h3 class="float-md-start mb-0 text-dark"><a class="text-dark text-decoration-none" href="/index">Portfolio</a></h3>
+          <nav class="nav nav-masthead justify-content-center float-md-end">
+          
+            <form action="/post">
+                <button class="btn btn-outline-dark btn-space" type="submit" >Add Post</button>
+              </form>
+              <h5 class="text-white">..</h5>
+              <form action="/updatepost">
+                <button class="btn btn-outline-dark btn-space" type="submit" >Update Post</button>
+              </form>
+              <h5 class="text-white">..</h5>
+              <form action="/deletepost">
+                <button class="btn btn-outline-dark btn-space" type="submit" >Delete Post</button>
+              </form>
+              <h5 class="text-white">..</h5>
+              <form action="/logout?_method=DELETE" method="POST">
+                <button class="btn btn-outline-dark" type="submit" >Logout</button>
+
+              </form>
+          </nav>
+        </div>
+      </header>
+<section class="background-radial-gradient overflow-hidden">
+
+  
+    <div class="col-lg-6 mb-5 mb-lg-0 position-absolute translate-middle top-50 start-50">
+        <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+            <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+  
+                <div class="card bg-glass">
+                    <div class="card-body px-4 py-5 px-md-5">
+                        <h1>Create Post</h1>
+                            <!-- Form for creating a new post -->
+                            <form id="createPostForm" method="POST">
+                                <!-- title input -->
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="title" class="form-control" required />
+                                    <label class="form-label" for="title">Title</label>
+                                </div>
+                            
+                                <!-- body input -->
+                                <div class="form-outline mb-4">
+                                    <textarea id="body" class="form-control" rows="3" required></textarea>
+                                    <label class="form-label" for="body">Body</label>
+                                </div>
+                            
+                                <!-- image URL input -->
+                                <div class="form-outline mb-4">
+                                    <input type="url" id="imageUrl" class="form-control" required />
+                                    <label class="form-label" for="imageUrl">Image URL</label>
+                                </div>
+                            
+                                <!-- Submit button -->
+                                <button type="submit" class="btn btn-outline-dark btn-space">
+                                    Create
+                                </button>
+                            </form>
+                            
+                            
+  
+                        
+        
+                </div>
+                
+            </div>
+        </div>
+      </div>
+    
+      
+    </div> 
+    
+  </section>
+  
+  <!-- Section: Design Block -->
+  
+    </div>
+
+    <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    // Function to handle form submission
+    $('#createPostForm').submit(function(event) {
+        event.preventDefault(); // Prevent default form submission
+        const formData = {
+            name: $('#title').val(), // Get value of title input
+            body: $('#body').val(),  // Get value of body input
+            image: $('#imageUrl').val() // Get value of image URL input
+        };
+        // Make a POST request to create a new post
+        axios.post('/products', formData)
+            .then(function(response) {
+                console.log(response.data);
+                alert('Post created successfully!');
+                // Redirect to the main page or update the UI as needed
+            })
+            .catch(function(error) {
+                console.error(error);
+                alert('Failed to create post. Please try again.');
+            });
+    });
+</script>
+
+</body>
+</html>
